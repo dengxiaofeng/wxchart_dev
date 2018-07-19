@@ -1,0 +1,51 @@
+ <div data-v-16f56c0b  data-v-274a9811 class="table-container pull-height">
+    
+    <avue-crud 
+              :option="tableOption" 
+              :data="tableData" 
+              :table-loading="tableLoading" 
+              :page="page" 
+              :menu="false"  
+              ref="crud" 
+              width="290" 
+              @row-save="handleSave" 
+              @row-update="handleUpdate" 
+              @row-del="handleDel" 
+              @selection-change="handleSelectionChange"
+              @search-change="handleSearchChange"
+              @current-change="handleCurrentChange"
+              :before-close="boxhandleClose"
+             >
+      <template slot-scope="scope" slot="userStatus">
+        <el-tag :type="scope.row.userStatus==0?'success':'danger'">{{findByvalue(scope.dic,scope.row.userStatus)}}</el-tag>
+      </template>
+      <template slot-scope="scope" slot="menu">
+         <el-button type="primary" icon="el-icon-edit" size="small" @click.stop.safe="handleEdit(scope.row,scope.index)">编 辑</el-button>
+         <el-button type="danger" icon="el-icon-delete" size="small" @click.stop.safe="handleDel(scope.row,scope.index)">删 除</el-button>
+      </template>
+       <template slot="menuRight">
+       	<el-button type="primary"
+                   icon="el-icon-plus"
+                   @click="handleAdd"
+                   circle
+                   size="small"></el-button>
+        <el-button type="primary"
+                   icon="el-icon-edit"
+                   @click="handleRowEdit"
+                   circle
+                   size="small"></el-button>
+        <el-button type="danger"
+                   icon="el-icon-delete"
+                   circle
+                   size="small"
+                   @click="handleRowDel"></el-button>
+        <el-button type="primary"
+                   icon="el-icon-refresh"
+                   circle
+                   size="small"
+                   @click="handleRefresh"></el-button>
+      </template>
+    </avue-crud>
+ </div>
+
+

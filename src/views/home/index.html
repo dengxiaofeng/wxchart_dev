@@ -1,0 +1,169 @@
+
+      <div class="pull-height animated">
+         <div data-v-274a9811 class="index">
+              <div data-v-9e6363c4 data-v-274a9811 class="sidebar-container left" :class="{'is-active':isCollapse}">
+                  <div data-v-5415cc18 data-v-182e9959 class="logo">
+                      <span data-v-5415cc18>
+                        <span data-v-5415cc18 class="logo_title is-bold">易维云</span>
+                        <span data-v-5415cc18 class="logo_subtitle">platform</span>
+                      </span>
+
+                  </div>
+                  <el-menu 
+                       unique-opened 
+                       :default-active="nowTagValue" 
+                       class="el-menu-vertical-demo" 
+                       mode="vertical" 
+                       :show-timeout="200" 
+                       background-color="#00142a" 
+                       text-color="hsla(0,0%,100%,.65)" 
+                       active-text-color="#409eff" 
+                       :collapse="isCollapse">
+                      <ul data-v-9e6363c4
+                          role="menubar" 
+                          class="el-menu-vertical-demo el-menu" 
+                          show-timeout="200" 
+                          :isCollapse="isCollapse"
+                          style="background-color: rgb(0, 20, 42);">
+                          <div data-v-182e9959 data-v-53820756 class="menu-wrapper">
+                             <template v-for="(item,index) in menu">
+                                 <el-menu-item data-v-53820756
+                                         v-if="item.children.length===0 " 
+                                         :index="filterPath(item.href,index)" 
+                                         @click="open(item)" 
+                                         :key="item.label">
+                                     <i :class="item.icon"></i>
+                                     <span slot="title" >{{item.label}}</span>
+                                 </el-menu-item>
+                                 <el-submenu data-v-53820756
+                                            v-else 
+                                            :index="filterPath(item.name,index)" 
+                                            :key="item.name" style="min-width: 10px">
+                                    <template slot="title">
+                                         <i :class="item.icon"></i>
+                                         <span slot="title" :class="{'el-menu--display':isCollapse}">{{item.label}}</span>
+                                    </template>
+
+                                    <template v-for="(child,cindex) in item.children">
+                                        <el-menu-item  data-v-53820756
+                                              :class="{'siderbar-active':nowTagValue==child.href}" 
+                                              :index="filterPath(child.href,cindex)" 
+                                              @click="open(child)" 
+                                              v-if="child.children.length==0" 
+                                              :key="cindex">
+                                           <i :class="child.icon"></i>
+                                           <span slot="title">{{child.label}}</span>
+                                        </el-menu-item>
+                                        <sidebar-item 
+                                                    v-else :menu="[child]" 
+                                                    :key="cindex" 
+                                                    :isCollapse="isCollapse">   
+                                        </sidebar-item>
+                                   </template>
+                                </el-submenu>
+                            </template>
+                        </div>
+                    </ul>
+                 </el-menu>
+              </div>
+              <div data-v-274a9811 class="right">
+                  <div data-v-274a9811 class="nav">
+                       <div data-v-01a90c57 data-v-274a9811 class="top top">
+                           <div class="tags-breadcrumb">
+                                    <i class="icon-navicon tag-collapse" 
+                                       :class="[{ 'tag-collapse_right': isCollapse }]" 
+                                       @click="showCollapse"></i>
+                            </div>
+                          <h1 data-v-01a90c57 class="top-title">
+                               <div data-v-0342b63c data-v-01a90c57 class="pull-auto top-menu">
+                                     <el-menu :default-active="activeIndex" mode="horizontal">
+                                       <template v-for="(item,index) in items">
+                                         <el-menu-item 
+                                             :index="item.parentId+''" 
+                                             @click.native="openMenu(item)" 
+                                             :key="index">{{item.label}}
+                                          </el-menu-item>
+                                       </template>
+                                     </el-menu>
+                                </div>
+                          </h1>
+                          <div class="top-button is-right">
+                                
+
+                                <el-tooltip class="item" effect="dark" :content="isFullScren?'退出全屏':'全屏'" placement="bottom">
+                                  <span class="top-item">
+                                    <i :class="isFullScren?'icon-tuichuquanping':'icon-quanping'" @click="handleScreen"></i>
+                                  </span>
+                                </el-tooltip>
+                                <el-tooltip class="item" effect="dark" content="用户头像" placement="bottom">
+                                  <img class="top-userImg" :src="userInfo.avatar">
+                                </el-tooltip>
+                                <el-dropdown>
+                                  <span class="el-dropdown-link">
+                                    {{userInfo.userName}}
+                                    <i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                                  <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item>
+                                      <router-link to="/">首页</router-link>
+                                    </el-dropdown-item>
+                                    <el-dropdown-item>
+                                      <router-link to="/info/index">个人信息</router-link>
+                                    </el-dropdown-item>
+                                    <el-dropdown-item @click.native="logout" divided>退出系统</el-dropdown-item>
+                                  </el-dropdown-menu>
+                                </el-dropdown>
+                         </div>
+                      </div>
+                      <div class="tags-container">
+                            <!-- tag盒子 -->
+                         <div class="tags-box" ref="tagBox">
+                             <div class="tags-list" 
+                                  ref="tagsList" 
+                                  @mousewheel="hadelMousewheel" 
+                                  @mouseup="hadelMouseUp" 
+                                  @mousemove="hadelMouse" 
+                                  @mousedown="hadelMousestart" 
+                                  @touchup="hadelMouseUp" 
+                                  @touchmove="hadelMouse" 
+                                  @touchstart="hadelMousestart">
+                                 <div ref="tagsPageOpened" 
+                                      class="tag-item" 
+                                      :class="{'is-active':nowTagValue==item.value}" 
+                                      :name="item.value" 
+                                      @contextmenu.prevent="openMenu(item,$event)" 
+                                      v-for="(item,index) in tagList" 
+                                      :key="index" 
+                                      @click="openUrl(item)">
+                                     <span class="icon-yuan tag-item-icon"></span>
+                                     <span class="tag-text">{{item.label}}</span>
+                                     <i class="el-icon-close tag-close" @click.stop="closeTag(item)" v-if="item.close"></i>
+                                </div>
+                            </div>
+                         <el-dropdown class="tags-menu pull-right">
+                           <el-button type="primary" size="mini">
+                             更多
+                             <i class="el-icon-arrow-down el-icon--right"></i>
+                           </el-button>
+                           <el-dropdown-menu slot="dropdown">
+                             <el-dropdown-item @click.native="closeOthersTags">关闭其他</el-dropdown-item>
+                             <el-dropdown-item @click.native="closeAllTags">关闭全部</el-dropdown-item>
+                           </el-dropdown-menu>
+                         </el-dropdown>
+                      </div>
+                  </div>
+              </div>
+              <div class="main">
+                <div class="router">
+                    <keep-alive>
+                      <router-view v-if="$route.meta.keepAlive"></router-view>
+                    </keep-alive>
+                    <router-view v-if="!$route.meta.keepAlive"></router-view>
+                </div>
+              </div>
+            </div>        
+         </div>
+      </div>
+</div>
+  
+

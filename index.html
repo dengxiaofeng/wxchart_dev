@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <link rel="stylesheet" href="static/cdn/element-ui/2.4.0/theme-chalk/index.css">
+  <link rel="stylesheet" href="static/cdn/animate/3.5.2/animate.css">
+  <link rel="stylesheet" href="static/cdn/iconfont/1.0.0/index.css">
+  <link rel="stylesheet" href="styles/common.css"/>
+  <link rel="stylesheet" href="static/font.css"/>
+  <title>微信运营平台</title>
+  <!--公告JS库 start-->
+  <script src="static/util/aes.js" charset="utf-8"></script>
+  <script src="static/cdn/vue/2.5.2/vue.min.js" charset="utf-8"></script>
+  <script src="static/cdn/vuex/2.4.1/vuex.min.js" charset="utf-8"></script>
+  <script src="static/cdn/vue-router/3.0.1/vue-router.js" charset="utf-8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script src="static/cdn/mock/mock.js" charset="utf-8"></script>
+  <script src="static/cdn/axios/1.0.0/axios.min.js" charset="utf-8"></script>
+  <script src="static/cdn/element-ui/2.4.0/index.js" charset="utf-8"></script>
+<!--   <script src="static/cdn/avue/avue.min.js" charset="utf-8"></script> -->
+  <script type="text/javascript" src="https://gitee.com/smallweigit/avue/raw/master/lib/avue.js"></script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css"/>
+  
+  <!--公告JS库 end -->
+
+  <!--工具类 start-->
+  <script src="src/api/request.js"></script>
+  <script src="js/util/util.js"></script>
+  <script src="js/util/auth.js"></script>
+  <script src="src/mock/menu.js"></script>
+   <!--工具类 end-->
+
+  <!--mock数据模拟 start-->
+  <script src="src/const/admin/adminTabelOption.js"></script>
+  <script src="src/api/admin.js"></script>
+  <script src="src/api/user.js"></script>
+   <!--mock数据模拟 end-->
+
+  <!--业务组件 start-->
+  <script src="src/const/website.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="src/views/home/home.js"></script>
+  <script src="src/views/wel/index.js"></script>
+  <script src="src/views/role/role.js"></script>
+  <script src="src/views/admin/menu/index.js"></script>
+  <script src="src/views/admin/role/index.js"></script>
+  <script src="src/views/admin/user/index.js"></script>
+  <script src="src/components/403.js"></script>
+  <script src="src/components/404.js"></script>
+  <script src="src/components/500.js"></script>
+
+  <!--业务组件 end-->
+ 
+  <!--Vuex单向状态树 start-->
+  <script src="src/vuex/modules/tags.js"></script>
+  <script src="src/vuex/modules/user.js"></script>
+  <script src="src/vuex/modules/admin.js"></script>
+  <script src="src/vuex/modules/common.js"></script>
+  <script src="src/vuex/getters.js"></script>
+  <script src="src/vuex/index.js"></script>
+  <script src="route.js"></script>
+  <script src="permission.js"></script>
+  <script src="axios.js"></script>
+  <!--Vuex单向状态树 end-->
+</head>
+<body>
+  <!--vue-ssr-outlet-->
+  <div id="app">
+       <router-view></router-view>
+  </div> 
+  
+   <script type="text/babel">
+   Vue.use(axios)
+   var vm = new Vue({ // 实例化vue,挂载路由
+      router,
+      store
+   }).$mount('#app');
+</script>
+<style>
+   .crud-header[data-v-780f963f],.crud-menu[data-v-780f963f]{
+      margin-bottom: 0px;
+   }
+   .crud-header .el-form-item {
+     margin-bottom:0px
+   }
+   .custom_menu .crud-menu_right[data-v-780f963f] {
+     right: 0;
+     float: right;
+  }
+</style>
+</body>
+  
+</html>

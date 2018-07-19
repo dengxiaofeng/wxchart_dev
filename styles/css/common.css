@@ -1,0 +1,40 @@
+/*
+Error: Invalid GBK character "\xE7"
+        on line 85 of common.scss
+
+80: 
+81: textarea {
+82:   resize: none;
+83: }
+84: 
+85: //禁用了文本的拖拉，尤其在谷歌下
+86: p {
+87:   text-align: justify;
+88:   text-justify: distribute;
+89: }
+90: 
+
+Backtrace:
+common.scss:85
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util.rb:1300:in `rescue in block in find_encoding_error'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util.rb:1297:in `block in find_encoding_error'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util.rb:1296:in `each'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util.rb:1296:in `each_with_index'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util.rb:1296:in `find_encoding_error'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util.rb:905:in `check_sass_encoding'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/engine.rb:436:in `check_encoding!'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/engine.rb:392:in `_to_tree'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/engine.rb:298:in `render_with_sourcemap'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:391:in `run'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:63:in `process_result'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/exec/base.rb:52:in `parse'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/exec/base.rb:19:in `parse!'
+D:/Program/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/bin/sass:13:in `<top (required)>'
+D:/Program/Ruby22/bin/sass:23:in `load'
+D:/Program/Ruby22/bin/sass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid GBK character \"\xE7\"\A         on line 85 of common.scss\A \A 80: \A 81: textarea {\A 82:   resize: none;\A 83: }\A 84: \A 85: //禁用了文本的拖拉，尤其在谷歌下\A 86: p {\A 87:   text-align: justify;\A 88:   text-justify: distribute;\A 89: }\A 90: "; }

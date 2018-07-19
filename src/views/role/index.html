@@ -1,0 +1,17 @@
+<div class="table-container pull-height">
+    <div class="table-header">
+      <el-button type="primary" @click="handleAdd" size="small" v-if="permission.sys_crud_btn_add">新 增</el-button>
+    </div>
+  
+    <el-dialog title="菜单" :visible.sync="grade.box" width="40%">
+      <el-tree :data="menuAll" :default-checked-keys="grade.check" :default-expanded-keys="grade.check" show-checkbox node-key="id" @check-change="handleGradeCheckChange">
+      </el-tree>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="handleGradeUpdate">更新</el-button>
+      </span>
+    </el-dialog>
+
+  </div>
+
+
+
